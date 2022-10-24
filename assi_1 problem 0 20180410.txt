@@ -1,0 +1,53 @@
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+using namespace std;
+
+void remove_extra_whitespaces(char* arr, char* newArr);
+int main() {
+    const int SIZE=100;
+
+    char arr[SIZE];
+    char newArr[SIZE];
+
+    cout<<"Enter String :"<<endl;
+   cin.getline ( arr, SIZE, '\n' );
+    remove_extra_whitespaces(arr,newArr);
+
+    cout<<newArr<<endl;
+    return 0;
+}
+
+void remove_extra_whitespaces(char* arr, char* newArr)
+{
+    int index1 = 0;
+    int index2 = 0;
+    while(arr[index1] != '\0')
+    {
+        if(index1==0)
+        {
+            arr[index1]=toupper(arr[index1]);
+        }
+        else
+        {
+            if(isalpha(arr[index1]))
+            {
+                arr[index1]=tolower(arr[index1]);
+            }
+        }
+        newArr[index2] = arr[index1];
+
+        if(arr[index1] == ' ')
+        {
+            while(arr[index1 + 1] == ' ')
+            {
+               index1++;
+            }
+        }
+
+        index2++;
+        index1++;
+    }
+
+    newArr[index2] = '\0';
+}

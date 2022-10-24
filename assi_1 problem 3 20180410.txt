@@ -1,0 +1,97 @@
+#include <iostream>
+using namespace std;
+#include <iomanip>
+string players[15]; 
+int score[15];
+int pointer = 1;
+void addPlayer(string name,int scor), printPlayers(),removePlayer(string player);
+int searchPlayer(string player);
+
+int main ()
+{
+
+   int selection,score;
+   string player;
+   while(1)
+   {
+    cout << " Enter1 for add a new player with score" << endl;
+        cout << " Enter2 for cout all players with score" << endl;
+        cout << " Enter3 for search player score" << endl;
+        cout << " Enter4 for delate a player " << endl;
+        cout << " Enter5 for way out" << endl;
+        cout << " Enter6 for exit choice enter again " << endl;
+        cin>>selection;
+    switch(selection)
+    {
+    case 1:   cout<<"Enter player name and score"<<endl;
+             cin>>player;
+             cin>>score;
+             addPlayer(player,score);
+             break;
+    case 2: printPlayers();
+            break;
+    case 3: cout<<"Enter player name"<<endl;
+            cin>>player;
+            searchPlayer(player);
+            break;
+    case 4: cout<<"Enter player name"<<endl;
+            cin>>player;
+            removePlayer(player);
+            break;
+    case 5: exit(0);
+    default:cout<<"wrong choice enter again"<<endl;
+   }
+  
+   }
+}
+void addPlayer(string name,int scor)
+{
+   players[pointer]=name;
+   score[pointer]=scor;
+   pointer++;
+}
+void printPlayers()
+{
+   int i=1;
+   cout << "player" << setw( 15 ) << "score" << endl;
+   while(i<pointer)
+   {
+   cout << players[i] << setw( 15 ) << score[i]<< endl;  
+   i++;  
+   }
+}
+int searchPlayer(string player)
+{int i=1,found=0;
+   while(i<pointer)
+   {
+       if(players[i]==player)
+       {
+           cout<<"score: "<<score[i]<<endl;
+           found=1;
+           return i;
+       }
+   i++;  
+   }
+   if(found==0)
+   {
+   cout<<"the player's name was not entered";  
+   return 0;
+   }
+  
+}
+void removePlayer(string player)
+{int i;
+i=searchPlayer(player);
+if(i)
+{
+
+
+while(i<pointer)
+{
+   players[i]=players[i+1];
+   score[i]=score[i+1];
+   i++;
+}
+pointer--;      
+}  
+}
